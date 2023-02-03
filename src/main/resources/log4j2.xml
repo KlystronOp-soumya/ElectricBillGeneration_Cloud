@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- if you set your logging framework to have the root logging level to 
+	WARN you will only get log events with WARN, ERROR, and FATAL levels: If 
+	the request level is at the configured level or higher level, it gets logged 
+	to the configured target. If not, it's denied. ALL < TRACE < DEBUG < INFO 
+	< WARN < ERROR < FATAL < OFF -->
+<Configuration status="INFO">
+	<Appenders>
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+		</Console>
+		<RollingFile name="DEBUGLOG"
+			fileName="logs/DataLoad_debug.log"
+			filePattern="%d{yyyy-mm-dd_HH_mm}_app.log.gz" append="true">
+
+			<!-- <LevelRangeFilter minLevel="DEBUG" maxLevel="INFO"
+				onMatch="ACCEPT" onMismatch="DENY" /> -->
+				
+			 <ThresholdFilter level="TRACE" onMatch="ACCEPT" onMismatch="DENY"/>
+			<Policies>
+				<SizeBasedTriggeringPolicy
+					size="100000 KB" />
+			</Policies>
+			<PatternLayout>
+				<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</Pattern>
+			</PatternLayout>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+		<RollingFile name="ERRORLOG"
+			fileName="logs/DataLoad_error.log"
+			filePattern="%d{yyyy-mm-dd_HH_mm}_app.log.gz" append="true">
+
+			<LevelRangeFilter minLevel="ERROR" maxLevel="ERROR"
+				onMatch="ACCEPT" onMismatch="NEUTRAL" />
+			<Policies>
+				<SizeBasedTriggeringPolicy
+					size="100000 KB" />
+			</Policies>
+			<PatternLayout>
+				<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</Pattern>
+			</PatternLayout>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<logger name="com.demo.taskdemo.billtask" level="DEBUG"
+			additivity="false">
+			<AppenderRef ref="DEBUGLOG" />
+		</logger>
+		<logger name="com.demo.taskdemo.billtask" level="ERROR"
+			additivity="false">
+			<!-- <AppenderRef ref="CONSOLE" /> -->
+			<AppenderRef ref="ERRORLOG" />
+		</logger>
+		<logger name="com.demo.taskdemo.billtask" level="INFO"
+			additivity="false">
+			<AppenderRef ref="CONSOLE" />
+			<!-- <AppenderRef ref="DEBUGLOG" /> -->
+		</logger>
+		<logger name="org.springframework" level="INFO"
+			additivity="false">
+			<AppenderRef ref="DEBUGLOG" />
+		</logger>
+		<logger name="org.springframework" level="DEBUG"
+			additivity="false">
+			<AppenderRef ref="DEBUGLOG" />
+		</logger>
+		<logger name="org.springframework" level="WARN"
+			additivity="false">
+			<AppenderRef ref="CONSOLE" />
+		</logger>
+		<logger name="org.springframework" level="ERROR"
+			additivity="false">
+			<!-- <AppenderRef ref="CONSOLE" /> -->
+			<AppenderRef ref="ERRORLOG" />
+		</logger>
+		<logger name="org.hibernate" level="ALL" additivity="false">
+			<AppenderRef ref="DEBUGLOG" />
+		</logger>
+		<!-- Root logger referring to console appender -->
+		<Root level="ALL" additivity="false">
+			<AppenderRef ref="DEBUGLOG" />
+			<!-- <AppenderRef ref="DEBUGLOG" /> -->
+		</Root>
+
+	</Loggers>
+</Configuration>
