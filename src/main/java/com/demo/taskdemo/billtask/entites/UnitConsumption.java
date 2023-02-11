@@ -13,6 +13,8 @@ public class UnitConsumption implements Serializable {
 	private int billingMonth; // pk
 	private int billingYear;// pk
 	private int unitConsumed;
+	private String tariffType;
+
 	private Date billingInsertionDate;
 
 	public UnitConsumption() {
@@ -77,6 +79,14 @@ public class UnitConsumption implements Serializable {
 
 	public void setUnitConsumed(int unitConsumed) {
 		this.unitConsumed = unitConsumed;
+	}
+
+	public String getTariffType() {
+		return tariffType;
+	}
+
+	public void setTariffType(String tariffType) {
+		this.tariffType = tariffType;
 	}
 
 	public Date getBillingInsertionDate() {

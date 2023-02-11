@@ -19,6 +19,7 @@ public class UnitConsumptionFieldSetMapper implements FieldSetMapper<UnitConsump
 		unitConsuptionObj.setBillingMonth(fieldSet.readInt("billingMonth"));
 		unitConsuptionObj.setBillingYear(fieldSet.readInt("billingYear"));
 		unitConsuptionObj.setUnitConsumed(fieldSet.readInt("unitConsumed"));
+		unitConsuptionObj.setTariffType(fieldSet.readString("type"));
 		unitConsuptionObj.setBillingInsertionDate(fieldSet.readDate("billingInsertionDate", "yyyy-dd-mm"));
 
 		return unitConsuptionObj;

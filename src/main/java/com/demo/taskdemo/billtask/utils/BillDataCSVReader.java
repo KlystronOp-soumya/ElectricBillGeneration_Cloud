@@ -46,7 +46,7 @@ public class BillDataCSVReader {
 			DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
 			lineTokenizer.setDelimiter(lineTokenizer.DELIMITER_COMMA);
 			lineTokenizer.setNames(new String[] { "consumerId", "meterId", "meterNo", "billingMonth", "billingYear",
-					"unitConsumed", "billingInsertionDate" });
+					"unitConsumed", "type", "billingInsertionDate" });
 			FieldSetMapper<UnitConsumption> fieldSetMapper = new UnitConsumptionFieldSetMapper();
 			this.lineMapper.setLineTokenizer(lineTokenizer);
 			this.lineMapper.setFieldSetMapper(fieldSetMapper);

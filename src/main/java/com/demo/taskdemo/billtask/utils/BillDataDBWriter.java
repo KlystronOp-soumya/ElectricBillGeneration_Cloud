@@ -43,10 +43,11 @@ public class BillDataDBWriter {
 						ps.setInt(4, item.getBillingMonth());
 						ps.setInt(5, item.getBillingYear());
 						ps.setInt(6, item.getUnitConsumed());
-						ps.setString(7, format.format(item.getBillingInsertionDate()));
-						ps.setInt(8, billDataLoadJobParams.getCurrDay());
-						ps.setInt(9, billDataLoadJobParams.getCurrMon());
-						ps.setInt(10, billDataLoadJobParams.getCurrYear());
+						ps.setString(7, item.getTariffType());
+						ps.setString(8, format.format(item.getBillingInsertionDate()));
+						ps.setInt(9, billDataLoadJobParams.getCurrDay());
+						ps.setInt(10, billDataLoadJobParams.getCurrMon());
+						ps.setInt(11, billDataLoadJobParams.getCurrYear());
 
 					}
 				}).build();
@@ -55,7 +56,7 @@ public class BillDataDBWriter {
 
 	protected String getSql() {
 
-		final String query = "INSERT INTO UNIT_CONSUMPTION VALUES(?,?,?,?,?,?,?,?,?,?)";
+		final String query = "INSERT INTO UNIT_CONSUMPTION VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
 		return query;
 	}
