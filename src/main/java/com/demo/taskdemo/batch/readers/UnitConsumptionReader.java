@@ -2,14 +2,20 @@ package com.demo.taskdemo.batch.readers;
 
 import javax.sql.DataSource;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.batch.item.database.JdbcCursorItemReader;
 import org.springframework.batch.item.database.builder.JdbcCursorItemReaderBuilder;
 
-import com.demo.taskdemo.entities.UnitConsumption;
+import com.demo.taskdemo.entities.DTO.UnitConsumptionDTO;
+import com.demo.taskdemo.exceptions.BillProcessException;
 import com.demo.taskdemo.mappers.UnitConsumptionRowMapper;
 
 public class UnitConsumptionReader {
 
+	private static final Logger LOGGER = LogManager.getLogger(UnitConsumptionReader.class);
+
+	private JdbcCursorItemReader<UnitConsumptionDTO> unitConsumptionItemReader;
 	private DataSource dataSource;
 
 	public UnitConsumptionReader(final DataSource dataSource) {
@@ -17,24 +23,25 @@ public class UnitConsumptionReader {
 		this.dataSource = dataSource;
 	}
 
-	public JdbcCursorItemReader<UnitConsumption> reader() {
-		JdbcCursorItemReader<UnitConsumption> unitConsumptionItemReader = null;
+	public JdbcCursorItemReader<UnitConsumptionDTO> getReader() throws BillProcessException {
+		LOGGER.info("Preparing item reader to read unit consumption data");
 		try {
-			unitConsumptionItemReader = new JdbcCursorItemReaderBuilder<UnitConsumption>().dataSource(null)
-					.rowMapper(new UnitConsumptionRowMapper()).sql(getSql()).build();
+			this.unitConsumptionItemReader = new JdbcCursorItemReaderBuilder<UnitConsumptionDTO>()
+					.dataSource(this.dataSource).rowMapper(new UnitConsumptionRowMapper()).sql(getSql()).build();
 
 		} catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
+			throw new BillProcessException(e.getCause(), e.getMessage());
 		}
 
-		return unitConsumptionItemReader;
+		return this.unitConsumptionItemReader;
 	}
 
 	protected String getSql() {
-		final String fetchUnitConsumptionQuery = "SELECT CONSUMER_ID , METER_ID , METER_NO, BILL_MONTH , BILL_YEAR , UNIT_CONSUMED , TARIFF_TYPE ,  "
-				+ " FROM UNIT_CONSUMPTION";
+		final String fetchUnitConsumptionQuery = "SELECT unt.CONSUMER_ID , unt.METER_ID , unt.METER_NO, unt.BILL_MONTH , unt.BILL_YEAR , unt.UNIT_CONSUMED , unt.TARIFF_TYPE as TARIFF_TYPE, trf.TARIFF_ID as TARIFF_ID, trf.TARIFF_START_DATE as TARIFF_START_DATE\r\n"
+				+ "FROM UNIT_CONSUMPTION unt , TARIFF trf \r\n" + "where unt.TARIFF_TYPE = trf.TARIFF_TYPE ";
 
+		LOGGER.info("Fetch query returned");
 		return fetchUnitConsumptionQuery;
 	}
 
