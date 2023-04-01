@@ -1,46 +1,44 @@
 package com.demo.taskdemo;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.logging.log4j.LogManager;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
-import org.springframework.batch.core.JobParameter;
-import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.launch.JobOperator;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import com.demo.taskdemo.utils.BillProcessingJobParams;
 
 @Component("billProcessingTaskBatchRunner")
 public class ElectricBillBatchRunner implements CommandLineRunner {
 
 	private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(ElectricBillBatchRunner.class);
 
-	private ApplicationContextProvider contextProvider;
+	// private ApplicationContextProvider contextProvider;
 	private Job job;
 	private JobLauncher jobLauncher;
 	private JobOperator jobOperator;
+	private BillProcessingJobParams jobParams;
 
-	public ElectricBillBatchRunner(ApplicationContextProvider contextProvider, Job job, JobLauncher jobLauncher,
-			JobOperator jobOperator) {
+	public ElectricBillBatchRunner(// ApplicationContextProvider contextProvider,
+			Job job, JobLauncher jobLauncher, JobOperator jobOperator, BillProcessingJobParams jobParams) {
 		super();
-		this.contextProvider = contextProvider;
+		// this.contextProvider = contextProvider;
 		this.job = job;
 		this.jobLauncher = jobLauncher;
 		this.jobOperator = jobOperator;
+		this.jobParams = jobParams;
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		LOGGER.info("Execting the job");
+		LOGGER.info("Executing the job");
 		try {
-			Map<String, JobParameter> jobParaMap = new HashMap<>();
-			jobParaMap.put("executionTime", new JobParameter(System.currentTimeMillis()));
 			LOGGER.info("Test execution");
-			JobExecution jobExecution = this.jobLauncher.run(job, new JobParameters(jobParaMap));
+			JobExecution jobExecution = this.jobLauncher.run(job, this.jobParams.getBillProcessingJobParameters());
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
