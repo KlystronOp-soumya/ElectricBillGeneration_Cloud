@@ -50,6 +50,9 @@
   	<logger name="com.demo.taskdemo" level="ERROR" additivity="false">
   		<AppenderRef ref="ERRORLOG"/>
   	</logger>
+  	<logger name="com.demo.taskdemo.batch" level="ERROR" additivity="false">
+  		<AppenderRef ref="ERRORLOG"/>
+  	</logger>
   	<logger name="com.demo.taskdemo" level="INFO" additivity="false">
   		<AppenderRef ref="CONSOLE"/>
   		<AppenderRef ref="DEBUGLOG" />
