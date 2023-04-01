@@ -4,9 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.sql.SQLException;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.sql.DataSource;
 
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,43 +31,29 @@ class ElectricBillProcessingApplicationTests {
 	@Autowired
 	private TariffRepo tariffRepo;
 
+	@PersistenceContext(unitName = "billProcessingPersistenceUnit")
+	private EntityManager entuEntityManager;
+
 	@Test
 	void contextLoads() {
 	}
 
 	@Test
-
-	@Order(value = 1)
 	public void check_DataBaseConnection() throws SQLException {
 		assertThat(dataSource.getConnection()).isNotNull();
 	}
 
 	@Test
-
-	@Order(value = 2)
-	public void check_TableCreation() {
-		int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM TARIFF", Integer.class);
-		assertThat(count).isEqualTo(3);
-
+	public void check_persistenceContext() {
+		assertThat(this.entuEntityManager).isNotNull();
 	}
 
 	@Test
-	public void check_persisted_TableCreation() {
-		int count = (int) this.tariffRepo.count();
-		assertThat(count).isEqualTo(3);
-	}
+	public void check_tariffTable() {
+		Query query = this.entuEntityManager.createQuery("SELECT COUNT(*) FROM TARIFF");
+		int totalRows = Integer.parseInt(query.getSingleResult().toString());
 
-	@Test
-	@Order(value = 4)
-	public void check_JdbcTemplate_Insert_Tariff_Data() {
-		// jdbcTemplate.execute("INSERT INTO TARIFF VALUES('T113' , '2015-01-01')");
-		// int count = entityManager.createNativeQuery("INSERT INTO tariff VALUES('T114'
-		// ,'2015-01-01')").executeUpdate();
-		// entityManager.getTransaction().begin();
-		jdbcTemplate.execute("INSERT INTO tariff VALUES('T117' ,'2015-01-01')");
-		// entityManager.joinTransaction();
-		// entityManager.getTransaction().commit();
-
+		assertThat(totalRows).isEqualTo(6);
 	}
 
 }
