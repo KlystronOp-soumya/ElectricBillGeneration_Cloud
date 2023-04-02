@@ -10,8 +10,14 @@
 	<groupId>com.demo</groupId>
 	<artifactId>ElectricBillProcessing</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>ElectricBillProcessing</name>
 	<description>Demo Project for Spring CloudDataFlow</description>
+	<developers>
+		<developer>
+			<name>SOUMYADEEP PAUL</name>
+		</developer>
+	</developers>
 	<properties>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>2021.0.5</spring-cloud.version>
@@ -94,6 +100,7 @@
 	</dependencyManagement>
 
 	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

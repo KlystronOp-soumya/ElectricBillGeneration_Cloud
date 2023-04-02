@@ -18,9 +18,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.demo.taskdemo.repo.TariffRepo;
 
-@SpringBootTest
+@SpringBootTest(classes = ElectricBillProcessingApplication.class)
 @RunWith(SpringRunner.class)
-class ElectricBillProcessingApplicationTests {
+public class ElectricBillProcessingApplicationTests {
 
 	@Autowired
 	private DataSource dataSource;
@@ -53,7 +53,7 @@ class ElectricBillProcessingApplicationTests {
 		Query query = this.entuEntityManager.createQuery("SELECT COUNT(*) FROM TARIFF");
 		int totalRows = Integer.parseInt(query.getSingleResult().toString());
 
-		assertThat(totalRows).isEqualTo(6);
+		assertThat(totalRows).isEqualTo(8);
 	}
 
 }
