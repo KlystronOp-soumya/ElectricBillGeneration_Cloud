@@ -28,6 +28,11 @@ public class Tariff implements Serializable {
 	@EmbeddedId
 	private TariffPK traiffPK;
 
+	// insertion date
+	// the tariff insertion date and tariff start date can be different
+	@Column(name = "TARIFF_DATE")
+	private String tariffDate;
+
 	@Column(name = "EXTRA_CHRG")
 	private BigDecimal extraCharge;
 	@Column(name = "VARIABLE_CHRG")

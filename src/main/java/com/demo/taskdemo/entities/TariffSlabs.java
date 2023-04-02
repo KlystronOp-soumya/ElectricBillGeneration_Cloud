@@ -13,6 +13,13 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TARIFF_SLABS")
 public class TariffSlabs implements Serializable {
@@ -31,7 +38,7 @@ public class TariffSlabs implements Serializable {
 	@Column(name = "slab_end")
 	private int slabEnd;
 	@Column(name = "slab_count")
-	private int slab_count;
+	private int slabCount;
 	@Column(name = "slab_rate")
 	private BigDecimal slabRate;
 	@Column(name = "rate")
@@ -46,84 +53,5 @@ public class TariffSlabs implements Serializable {
 	// "TARIFF_START_DATE", insertable = false, updatable = false)
 	})
 	private Tariff tariff;
-
-	public TariffSlabs(int id, int slabStart, int slabEnd, int slab_count, BigDecimal slabRate, BigDecimal fixedRate,
-			Tariff tariff) {
-		super();
-		this.id = id;
-		this.slabStart = slabStart;
-		this.slabEnd = slabEnd;
-		this.slab_count = slab_count;
-		this.slabRate = slabRate;
-		this.fixedRate = fixedRate;
-		this.tariff = tariff;
-	}
-
-	public TariffSlabs(int slabStart, int slabEnd, int slab_count, BigDecimal slabRate, BigDecimal fixedRate,
-			Tariff tariff) {
-		super();
-		this.slabStart = slabStart;
-		this.slabEnd = slabEnd;
-		this.slab_count = slab_count;
-		this.slabRate = slabRate;
-		this.fixedRate = fixedRate;
-		this.tariff = tariff;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getSlabStart() {
-		return slabStart;
-	}
-
-	public void setSlabStart(int slabStart) {
-		this.slabStart = slabStart;
-	}
-
-	public int getSlabEnd() {
-		return slabEnd;
-	}
-
-	public void setSlabEnd(int slabEnd) {
-		this.slabEnd = slabEnd;
-	}
-
-	public int getSlab_count() {
-		return slab_count;
-	}
-
-	public void setSlab_count(int slab_count) {
-		this.slab_count = slab_count;
-	}
-
-	public BigDecimal getSlabRate() {
-		return slabRate;
-	}
-
-	public void setSlabRate(BigDecimal slabRate) {
-		this.slabRate = slabRate;
-	}
-
-	public BigDecimal getFixedRate() {
-		return fixedRate;
-	}
-
-	public void setFixedRate(BigDecimal fixedRate) {
-		this.fixedRate = fixedRate;
-	}
-
-	public Tariff getTariff() {
-		return tariff;
-	}
-
-	public void setTariff(Tariff tariff) {
-		this.tariff = tariff;
-	}
 
 }

@@ -27,7 +27,8 @@ public class UnitConsumptionReader {
 		LOGGER.info("Preparing item reader to read unit consumption data");
 		try {
 			this.unitConsumptionItemReader = new JdbcCursorItemReaderBuilder<UnitConsumptionDTO>()
-					.dataSource(this.dataSource).rowMapper(new UnitConsumptionRowMapper()).sql(getSql()).build();
+					.name("unitconsumptionReader").dataSource(this.dataSource).rowMapper(new UnitConsumptionRowMapper())
+					.sql(getSql()).build();
 
 		} catch (Exception e) {
 			// TODO: handle exception

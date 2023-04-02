@@ -11,6 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProcessedBilling {
+
+	private BigDecimal dutyCharge;
+	private BigDecimal fixedCharge;
+	private BigDecimal meterCharge;
+	private BigDecimal varCharge;
 	private BigDecimal totalAmount;
 
 	private String billSequenceNumber;

@@ -21,6 +21,7 @@ public class UnitConsumption implements Serializable {
 
 	@EmbeddedId
 	private UnitConsumptionPK unitConsumptionPK;
+
 	@Column(name = "UNIT_CONSUMED")
 	private int unitConsumed;
 
