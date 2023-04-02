@@ -37,7 +37,7 @@ public class DataLoadTaskConfigurer implements TaskConfigurer {
 	public TaskRepository getTaskRepository() {
 		// TODO Auto-generated method stub
 		taskRepository = new SimpleTaskRepository(taskExecutionDaoFactoryBean);
-		taskRepository.createTaskExecution("BillDataLoadTask");
+		// taskRepository.createTaskExecution("BillDataLoadTask");
 		return taskRepository;
 	}
 

@@ -32,7 +32,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import com.demo.taskdemo.billtask.utils.DataLoadTaskConfigurer;
 
-@Configuration(value = "batchJobExecutionConfiguration", proxyBeanMethods = false)
+@Configuration(value = "batchJobExecutionConfiguration", proxyBeanMethods = true) // changed from false to true
+																					// 19/03/2023
 @PropertySource(value = "classpath:db-config.properties")
 public class BatchJobExecutionConfig {
 

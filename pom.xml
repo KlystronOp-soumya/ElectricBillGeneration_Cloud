@@ -10,6 +10,7 @@
 	<groupId>com.demo</groupId>
 	<artifactId>ElectricBillDataLoadTask</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>ElectricBillDataLoadTask</name>
 	<description>Demo Project for Spring CloudDataFlow</description>
 	<developers>
