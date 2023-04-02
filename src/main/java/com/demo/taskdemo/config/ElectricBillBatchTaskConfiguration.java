@@ -10,10 +10,9 @@ import org.springframework.cloud.task.repository.support.SimpleTaskNameResolver;
 import org.springframework.cloud.task.repository.support.SimpleTaskRepository;
 import org.springframework.cloud.task.repository.support.TaskExecutionDaoFactoryBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
-@Configuration("electricBillBatchTaskConfiguration")
+//@Configuration("electricBillBatchTaskConfiguration")
 public class ElectricBillBatchTaskConfiguration {
 
 	private PlatformTransactionManager transactionManager;
@@ -34,8 +33,7 @@ public class ElectricBillBatchTaskConfiguration {
 
 	@Bean("taskNameResolver")
 	public TaskNameResolver taskNameResolver() {
-		final SimpleTaskNameResolver taskNameResolver = new SimpleTaskNameResolver();
-
+		SimpleTaskNameResolver taskNameResolver = new SimpleTaskNameResolver();
 		return taskNameResolver;
 	}
 
