@@ -97,7 +97,7 @@ wget https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud
 
 
 wget https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-dataflow-shell/2.10.2/spring-cloud-dataflow-shell-2.10.2.jar```
-
+#### Pipeline Setup:
 ![Pipeline](https://user-images.githubusercontent.com/69466192/230708407-8871f20f-89be-43c4-9b27-b33a3b5aadff.png)
 ![execution](https://user-images.githubusercontent.com/69466192/230708517-ef2b447b-b3e5-4395-a258-ad39800d5281.png)
 ![Information](https://user-images.githubusercontent.com/69466192/230708521-5c009691-117e-4153-9e36-f76b19607553.png)
