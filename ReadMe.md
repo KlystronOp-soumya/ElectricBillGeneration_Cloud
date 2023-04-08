@@ -89,7 +89,8 @@ deployer.bill-processing-task.spring.cloud.dataflow.features.streams-enabled=fal
 deployer.bill-processing-task.spring.cloud.dataflow.features.tasks-enabled=true<br>
 spring.cloud.dataflow.task.platformName=default<br>
 ```
-![Pipeline](https://user-images.githubusercontent.com/69466192/230708208-42bd6cd7-2bc1-4298-b067-8149c3f3b09c.JPG)
+
+![Pipeline](https://user-images.githubusercontent.com/69466192/230708407-8871f20f-89be-43c4-9b27-b33a3b5aadff.png)
 
 
 References:
