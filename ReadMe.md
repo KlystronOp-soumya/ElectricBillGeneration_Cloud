@@ -89,9 +89,8 @@ deployer.bill-processing-task.spring.cloud.dataflow.features.streams-enabled=fal
 deployer.bill-processing-task.spring.cloud.dataflow.features.tasks-enabled=true<br>
 spring.cloud.dataflow.task.platformName=default<br>
 ```
-6. Database structure:
-7. DataSet:
-8.References:
+
+References:
 Docs:  https://dataflow.spring.io/docs/installation/local/manual/
 ```
 wget https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-dataflow-server/2.10.2/spring-cloud-dataflow-server-2.10.2.jar
@@ -99,3 +98,13 @@ wget https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud
 
 wget https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-dataflow-shell/2.10.2/spring-cloud-dataflow-shell-2.10.2.jar```
 
+#### Pipeline Setup:
+![Pipeline](https://user-images.githubusercontent.com/69466192/230708407-8871f20f-89be-43c4-9b27-b33a3b5aadff.png)
+#### Exection:
+![execution](https://user-images.githubusercontent.com/69466192/230708517-ef2b447b-b3e5-4395-a258-ad39800d5281.png)
+#### Information:
+![Information](https://user-images.githubusercontent.com/69466192/230708521-5c009691-117e-4153-9e36-f76b19607553.png)
+#### Logs:
+![logs](https://user-images.githubusercontent.com/69466192/230708541-9a5a8a80-9936-4e36-8d7b-ba7c1c8e01e2.png)
+#### Database Design:
+![Database_Desing](https://user-images.githubusercontent.com/69466192/230708563-21dd4e58-b756-4301-92fd-6641095d1efa.png)
