@@ -99,7 +99,7 @@ wget https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud
 wget https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-dataflow-shell/2.10.2/spring-cloud-dataflow-shell-2.10.2.jar```
 
 <p>
-
+<label> Pipeline </label>
 ![Pipeline](https://user-images.githubusercontent.com/69466192/230708407-8871f20f-89be-43c4-9b27-b33a3b5aadff.png)
 </p>
 
